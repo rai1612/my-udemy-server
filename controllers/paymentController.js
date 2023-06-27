@@ -95,7 +95,8 @@ export const cancelSubscription = catchAsyncError(async (req, res, next) => {
     refund = true;
   }
   // remove the subscription details
-  await Payment.findOneAndRemove({ razorpay_subscription_id: subscriptionId });
+  // await Payment.findOneAndDelete({ razorpay_subscription_id: subscriptionId });
+  await payment.remove();
   user.subscription.id = undefined;
   user.subscription.status = undefined;
 
