@@ -4,6 +4,7 @@ import { Payment } from "../models/Payment.js";
 import ErrorHandler from "../utils/errorHandler.js";
 import { instance } from "../server.js";
 import crypto from "crypto";
+import { Stats } from "../models/Stats.js";
 
 export const buySubscription = catchAsyncError(async (req, res, next) => {
   const user = await User.findById(req.user._id);
@@ -18,7 +19,7 @@ export const buySubscription = catchAsyncError(async (req, res, next) => {
     customer_notify: 1,
     total_count: 12,
   });
-
+  // console.log(subscription);
   user.subscription.id = subscription.id;
   user.subscription.status = subscription.status;
 
